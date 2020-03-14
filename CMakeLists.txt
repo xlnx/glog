@@ -758,19 +758,19 @@ if (BUILD_TESTING)
     FIXTURES_REQUIRED "cmake_package_config;cmake_package_config_working")
 endif (BUILD_TESTING)
 
-install (TARGETS glog
-  EXPORT glog-targets
-  RUNTIME DESTINATION ${_glog_CMake_BINDIR}
-  PUBLIC_HEADER DESTINATION ${_glog_CMake_INCLUDE_DIR}/glog
-  LIBRARY DESTINATION ${_glog_CMake_LIBDIR}
-  ARCHIVE DESTINATION ${_glog_CMake_LIBDIR})
+# install (TARGETS glog
+#   EXPORT glog-targets
+#   RUNTIME DESTINATION ${_glog_CMake_BINDIR}
+#   PUBLIC_HEADER DESTINATION ${_glog_CMake_INCLUDE_DIR}/glog
+#   LIBRARY DESTINATION ${_glog_CMake_LIBDIR}
+#   ARCHIVE DESTINATION ${_glog_CMake_LIBDIR})
 
-if (WITH_PKGCONFIG)
-  install (
-    FILES "${PROJECT_BINARY_DIR}/libglog.pc"
-    DESTINATION "${_glog_CMake_LIBDIR}/pkgconfig"
-  )
-endif (WITH_PKGCONFIG)
+# if (WITH_PKGCONFIG)
+#   install (
+#     FILES "${PROJECT_BINARY_DIR}/libglog.pc"
+#     DESTINATION "${_glog_CMake_LIBDIR}/pkgconfig"
+#   )
+# endif (WITH_PKGCONFIG)
 
 set (glog_CMake_VERSION 3.0)
 
@@ -815,30 +815,30 @@ set (glog_FULL_CMake_DATADIR
 configure_file (glog-modules.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/glog-modules.cmake @ONLY)
 
-install (CODE
-"
-set (glog_FULL_CMake_DATADIR \"\\\${CMAKE_CURRENT_LIST_DIR}/${glog_REL_CMake_DATADIR}\")
-configure_file (${CMAKE_CURRENT_SOURCE_DIR}/glog-modules.cmake.in
-  \"${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/glog-modules.cmake\" @ONLY)
-file (INSTALL
-  \"${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/glog-modules.cmake\"
-  DESTINATION
-  \"\${CMAKE_INSTALL_PREFIX}/${_glog_CMake_INSTALLDIR}\")
-"
-  COMPONENT Development
-)
+# install (CODE
+# "
+# set (glog_FULL_CMake_DATADIR \"\\\${CMAKE_CURRENT_LIST_DIR}/${glog_REL_CMake_DATADIR}\")
+# configure_file (${CMAKE_CURRENT_SOURCE_DIR}/glog-modules.cmake.in
+#   \"${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/glog-modules.cmake\" @ONLY)
+# file (INSTALL
+#   \"${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/glog-modules.cmake\"
+#   DESTINATION
+#   \"\${CMAKE_INSTALL_PREFIX}/${_glog_CMake_INSTALLDIR}\")
+# "
+#   COMPONENT Development
+# )
 
-install (FILES
-  ${CMAKE_CURRENT_BINARY_DIR}/glog-config.cmake
-  ${CMAKE_CURRENT_BINARY_DIR}/glog-config-version.cmake
-  DESTINATION ${_glog_CMake_INSTALLDIR})
+# install (FILES
+#   ${CMAKE_CURRENT_BINARY_DIR}/glog-config.cmake
+#   ${CMAKE_CURRENT_BINARY_DIR}/glog-config-version.cmake
+#   DESTINATION ${_glog_CMake_INSTALLDIR})
 
-# Find modules in share/glog/cmake
-install (DIRECTORY ${_glog_BINARY_CMake_DATADIR}
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/glog
-  COMPONENT Development
-  FILES_MATCHING PATTERN "*.cmake"
-)
+# # Find modules in share/glog/cmake
+# install (DIRECTORY ${_glog_BINARY_CMake_DATADIR}
+#   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/glog
+#   COMPONENT Development
+#   FILES_MATCHING PATTERN "*.cmake"
+# )
 
-install (EXPORT glog-targets NAMESPACE glog:: DESTINATION
-  ${_glog_CMake_INSTALLDIR})
+# install (EXPORT glog-targets NAMESPACE glog:: DESTINATION
+#   ${_glog_CMake_INSTALLDIR})
